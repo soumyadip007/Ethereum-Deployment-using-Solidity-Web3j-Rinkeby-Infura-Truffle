@@ -46,7 +46,7 @@ public class Application {
 
 	        // Now lets deploy a smart contract
 	        log.info("Deploying smart contract");
-	        Helloworld contract = Helloworld.deploy(
+	        Greeter contract = Greeter.deploy(
 	                web3j, credentials,
 	                ManagedTransaction.GAS_PRICE, Contract.GAS_LIMIT).send();
 
