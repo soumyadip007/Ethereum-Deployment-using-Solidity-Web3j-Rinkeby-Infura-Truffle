@@ -1,10 +1,12 @@
-package org.web3j.sample;
+package web3j.ethereum;
+
 
 import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+
 import org.web3j.abi.EventEncoder;
 import org.web3j.abi.FunctionEncoder;
 import org.web3j.abi.TypeReference;
@@ -21,6 +23,7 @@ import org.web3j.protocol.core.methods.response.Log;
 import org.web3j.protocol.core.methods.response.TransactionReceipt;
 import org.web3j.tx.Contract;
 import org.web3j.tx.TransactionManager;
+
 import rx.Observable;
 import rx.functions.Func1;
 
@@ -43,7 +46,6 @@ public class Greeter extends Contract {
     public static final String FUNC_GREET = "greet";
 
     public static final Event MODIFIED_EVENT = new Event("Modified", 
-            Arrays.<TypeReference<?>>asList(new TypeReference<Utf8String>() {}, new TypeReference<Utf8String>() {}),
             Arrays.<TypeReference<?>>asList(new TypeReference<Utf8String>() {}, new TypeReference<Utf8String>() {}));
     ;
 
@@ -105,7 +107,6 @@ public class Greeter extends Contract {
 
     public Observable<ModifiedEventResponse> modifiedEventObservable(EthFilter filter) {
         return web3j.ethLogObservable(filter).map(new Func1<Log, ModifiedEventResponse>() {
-            @Override
             public ModifiedEventResponse call(Log log) {
                 Contract.EventValuesWithLog eventValues = extractEventParametersWithLog(MODIFIED_EVENT, log);
                 ModifiedEventResponse typedResponse = new ModifiedEventResponse();
