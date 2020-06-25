@@ -15,7 +15,7 @@ import org.web3j.protocol.parity.methods.response.Trace;
 
 import java.util.List;
 
-public class Web3JClient {
+public class Application {
     private static Web3jService service = new HttpService("http://localhost:8545"); // put fullnode url here
     private static Web3j web3j = Web3j.build(service);
     private static Parity parity = Parity.build(service);
